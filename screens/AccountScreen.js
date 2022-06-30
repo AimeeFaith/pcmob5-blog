@@ -1,4 +1,3 @@
-import React from "react";
 import React, { useState, useEffect } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 import { commonStyles } from "../styles/commonStyles";
@@ -38,30 +37,15 @@ export default function AccountScreen({ navigation }) {
   function signOut() {
     AsyncStorage.removeItem("token");
     navigation.navigate("SignIn");
-    @@ -12, 6 + 42, 7 @@ export default function AccountScreen({ navigation }) {
-      return (
-        <View style={commonStyles.container}>
-          <Text>Account Screen</Text>
-          <Text>{username}</Text>
-          <Button title="Sign out" onPress={signOut} />
-        </View>
-      );
-      6
-      screens / SignInScreen.js
-      @@ -30, 14 + 30, 12 @@ export default function SignInScreen({ navigation }) {
-        password,
-      });
-      console.log("Success logging in!");
-      console.log(response);
-
-      AsyncStorage.setItem("token", response.data.access_token);
-      // console.log(response);
-      await AsyncStorage.setItem("token", response.data.access_token);
-      navigation.navigate("Account");
-    } catch (error) {
-      console.log("Error logging in!");
-      console.log(error.response);
-
-      setErrorText(error.response.data.description);
-    }
   }
+
+  return (
+    <View style={commonStyles.container}>
+      <Text>Account Screen</Text>
+      <Text>{username}</Text>
+      <Button title="Sign out" onPress={signOut} />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({});
