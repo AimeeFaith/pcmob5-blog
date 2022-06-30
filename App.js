@@ -12,7 +12,7 @@ export default function App() {
   const [loading, setloading] = useState(true)
   const [signedIn, setSignedIn] = useState(false)
 
-  function loadToken() {
+  async function loadToken() {
     const token = await AsyncStorage.getItem("token")
     if (token) setSignedIn(true);
     setloading(false);
@@ -28,7 +28,9 @@ export default function App() {
     </View>
   ) : (
     <NavigationContainer>
-      <Stack.Navigator mode="modal" headerMode="none">
+      <Stack.Navigator mode="modal" headerMode="none"
+        initialRouteName={signedIn ? "Account" : "SignIn"}
+      >
         <Stack.Screen component={AccountScreen} name="Account" />
         <Stack.Screen component={SignInScreen} name="SignIn" />
       </Stack.Navigator>
